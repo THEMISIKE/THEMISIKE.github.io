@@ -9,11 +9,11 @@
 
 * { box-sizing: border-box; }
 body { margin: 0; }
-.company { max-width: 1000px; margin: 0 auto; padding-bottom: 48px; }
-.banner { display: block; width: 100%; height: clamp(180px, 32vw, 300px); object-fit: cover; object-position: center 48%; }
-.introduction, section { margin-inline: 40px; }
-.introduction { padding-block: 34px 28px; border-bottom: 2px solid #1a3046; }
-h1 { max-width: 850px; margin: 0; font-size: clamp(1.35rem, 3.2vw, 2rem); line-height: 1.4; font-weight: 650; overflow-wrap: anywhere; }
+.company { width: 100%; padding-bottom: 64px; }
+.banner { display: block; width: 100%; height: clamp(180px, 27vw, 380px); object-fit: cover; object-position: center 48%; border-bottom: 4px solid #1a3046; }
+.introduction, section { width: calc(100% - 80px); max-width: 1120px; margin-inline: auto; }
+.introduction { padding-block: 44px 36px; border-bottom: 1px solid #d6dfe6; }
+h1 { max-width: 960px; margin: 0; font-size: clamp(1.35rem, 2.5vw, 2rem); line-height: 1.4; font-weight: 650; letter-spacing: -0.025em; overflow-wrap: anywhere; text-wrap: balance; }
 .activity { margin: 16px 0 0; color: #536273; font-size: 1rem; }
 section { margin-top: 32px; }
 h2 { margin: 0 0 14px; font-size: 1.2rem; font-weight: 650; }
@@ -25,8 +25,17 @@ a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; 
 a:hover { color: #246389; }
 a:focus-visible { outline: 2px solid #246389; outline-offset: 4px; border-radius: 2px; }
 
+@media (min-width: 960px) {
+  section { display: grid; grid-template-columns: 240px minmax(0, 1fr); gap: 48px; margin-top: 44px; }
+  h2 { padding-top: 12px; }
+  h2::before { content: ""; display: block; width: 32px; height: 3px; margin-bottom: 16px; background: #66889e; }
+  .detail { grid-template-columns: minmax(0, 1fr) minmax(0, 1.55fr); padding-block: 16px; }
+  .detail:first-child { padding-top: 12px; }
+}
+
 @media (max-width: 600px) {
-  .introduction, section { margin-inline: 22px; }
+  .introduction, section { width: auto; margin-inline: 22px; }
+  .banner { height: clamp(180px, 32vw, 300px); border-bottom: 0; }
   .introduction { padding-block: 26px 24px; }
   .detail { grid-template-columns: minmax(0, 1fr); gap: 4px; }
   dt { font-size: 0.9rem; }
@@ -36,7 +45,9 @@ a:focus-visible { outline: 2px solid #246389; outline-offset: 4px; border-radius
 @media print {
   .banner { height: 150px; }
   .company { max-width: none; padding: 0; }
-  .introduction, section { margin-inline: 0; }
+  .introduction, section { width: 100%; margin-inline: 0; }
+  section { display: block; }
+  h2::before { display: none; }
   .detail { break-inside: avoid; }
   a { text-decoration: none; }
 }
